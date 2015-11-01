@@ -48,6 +48,12 @@ Output : Square of 9 is 81
 SquareRoot of 9 is 3
 ### Using context to communicate between operation steps
 ```cs
+internal class CalculationContext
+{
+    public int[] Numbers { get; set; }
+    public int Sum { get; set; }
+    public int Average { get; set; }
+}
 IOperationOrchestrator<CalculationContext> orchestrator = new OperationOrchestrator<CalculationContext>(
     new List<IOperation<CalculationContext>>() {
         new FindSumOperation(),
