@@ -14,11 +14,36 @@ orchestrator.Start(10);
 public class FindSquare : IOperation<int>
 {
         void IOperation<int>.Execute(int context)
-    {
-        Console.WriteLine("Square of {0} is {1}", context, context * context);
-    }
+        {
+                Console.WriteLine("Square of {0} is {1}", context, context * context);
+        }
 }
     </code>
     </pre>
 #### Output
 Square of 10 is 100
+### Working with 2 operations
+<pre>
+<code>
+IOperationOrchestrator<int> orchestrator = new OperationOrchestrator<int>(new List<IOperation<int>>()
+        {
+                new FindSquare(),
+                new FindSquareRoot()
+        });
+orchestrator.Start(10);
+internal class FindSquareRoot : IOperation<int>
+{
+    void IOperation<int>.Execute(int context)
+    {
+        Console.WriteLine("SquareRoot of {0} is {1}", context, Math.Sqrt(context));
+    }
+}
+public class FindSquare : IOperation<int>
+{
+    void IOperation<int>.Execute(int context)
+    {
+        Console.WriteLine("Square of {0} is {1}", context, context * context);
+    }
+}
+</code>
+</pre>
