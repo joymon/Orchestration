@@ -14,16 +14,34 @@ namespace JoymonOnline.Orchestration.Tests
         [TestMethod]
         public void WhenInNormalCondition_ShouldWork()
         {
-            IOperationOrchestrator<int> orchestrator = 
+            IOperationOrchestrator<int> orchestrator =
                 new OperationOrchestrator<int>(new List<IOperation<int>>() { new FindSquare() });
+            orchestrator.Start(10);
+        }
+        [TestMethod]
+        public void When2OperationsAreUsed_ShouldWork()
+        {
+            IOperationOrchestrator<int> orchestrator = new OperationOrchestrator<int>(new List<IOperation<int>>()
+            {
+                new FindSquare(),
+                new FindSquareRoot()
+            });
             orchestrator.Start(10);
         }
         [TestMethod]
         public void WhenBackgroundOperationsListProviderIsUsed_ShouldSucceed()
         {
             IOperationOrchestrator<int> orchestrator =
-                new OperationOrchestrator<int>( new OperationsProvider());
+                new OperationOrchestrator<int>(new OperationsProvider());
             orchestrator.Start(10);
+        }
+    }
+
+    internal class FindSquareRoot : IOperation<int>
+    {
+        void IOperation<int>.Execute(int context)
+        {
+            Console.WriteLine("SquareRoot of {0} is {1}", context, Math.Sqrt(context));
         }
     }
 
