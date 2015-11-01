@@ -32,7 +32,7 @@ IOperationOrchestrator<int> orchestrator = new OperationOrchestrator<int>(new Li
                 new FindSquare(),
                 new FindSquareRoot()
         });
-orchestrator.Start(10);
+orchestrator.Start(16);
 internal class FindSquareRoot : IOperation<int>
 {
     void IOperation<int>.Execute(int context)
@@ -49,3 +49,7 @@ public class FindSquare : IOperation<int>
 }
 </code>
 </pre>
+
+Output : Square of 9 is 81
+
+SquareRoot of 9 is 3
