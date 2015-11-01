@@ -20,6 +20,7 @@ public class FindSquare : IOperation<int>
 }
     </code>
     </pre>
+    
 #### Output
 
 Square of 10 is 100
