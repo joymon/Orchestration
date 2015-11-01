@@ -7,8 +7,7 @@
 
 ## How to use
 ### Simple usage
-<pre>
-<code>
+```cs
 IOperationOrchestrator<int> orchestrator = new OperationOrchestrator<int>(new List<IOperation<int>>() { new FindSquare() });
 orchestrator.Start(10);       
 public class FindSquare : IOperation<int>
@@ -18,9 +17,7 @@ public class FindSquare : IOperation<int>
                 Console.WriteLine("Square of {0} is {1}", context, context * context);
         }
 }
-    </code>
-    </pre>
-    
+```
 Output:
 Square of 10 is 100
 ---
