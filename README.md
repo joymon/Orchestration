@@ -46,3 +46,35 @@ public class FindSquare : IOperation<int>
 Output : Square of 9 is 81
 
 SquareRoot of 9 is 3
+### Using context to communicate between operation steps
+```cs
+internal class CalculationContext
+{
+    public int[] Numbers { get; set; }
+    public int Sum { get; set; }
+    public int Average { get; set; }
+}
+IOperationOrchestrator<CalculationContext> orchestrator = new OperationOrchestrator<CalculationContext>(
+    new List<IOperation<CalculationContext>>() {
+        new FindSumOperation(),
+        new FindAverageOperation()
+    });
+CalculationContext context = new CalculationContext() { Numbers = new int[] { 1, 2, 3, 6 } };
+orchestrator.Start(context);
+Console.WriteLine("Sum={0},Average={1}", context.Sum, context.Average);
+internal class FindSumOperation : IOperation<CalculationContext>
+{
+    void IOperation<CalculationContext>.Execute(CalculationContext context)
+    {
+        context.Sum = context.Numbers.Sum();
+    }
+}
+internal class FindAverageOperation : IOperation<CalculationContext>
+{
+    void IOperation<CalculationContext>.Execute(CalculationContext context)
+    {
+        context.Average = context.Sum / context.Numbers.Length;
+    }
+}
+```
+Output : Sum=12,Average=3
