@@ -47,6 +47,9 @@ Output : Square of 9 is 81
 
 SquareRoot of 9 is 3
 ### Using context to communicate between operation steps
+
+Instead of feeding the output from one step to another step, its kept in the context object / state.
+
 ```cs
 internal class CalculationContext
 {
