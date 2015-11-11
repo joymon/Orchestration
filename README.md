@@ -1,4 +1,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/6qx7d8dpnx8o5d4n?svg=true)](https://ci.appveyor.com/project/joymon/orchestration)
+[![Build status](https://img.shields.io/nuget/v/Orchestrator.svg)](https://img.shields.io/nuget/v/Orchestrator.svg)
+[![Build status](https://img.shields.io/nuget/dt/Orchestrator.svg)](https://img.shields.io/nuget/dt/Orchestrator.svg)
+
 
 # Orchestration
 .Net library to orchestrate operations and commands. Helps to follow Single Responsibility Pattern
