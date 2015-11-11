@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/6qx7d8dpnx8o5d4n?svg=true)](https://ci.appveyor.com/project/joymon/orchestration)
+
 # Orchestration
 .Net library to orchestrate operations and commands. Helps to follow Single Responsibility Pattern
 ## When to use this
