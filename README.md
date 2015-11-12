@@ -11,6 +11,11 @@
 - If you are ok on dealing with a state. Here in this case the context.
 
 ## How to use
+
+Goto nuget package manager console and run the below command to get the package added to the project.
+
+install-package Orchestration
+
 ### Simple usage
 ```cs
 IOperationOrchestrator<int> orchestrator = new OperationOrchestrator<int>(new List<IOperation<int>>() { new FindSquare() });
