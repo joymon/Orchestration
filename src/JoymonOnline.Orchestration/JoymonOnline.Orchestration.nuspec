@@ -8,7 +8,7 @@
     <owners>Joy George K</owners>
     <licenseUrl>https://github.com/joymon/Orchestration/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/joymon/orchestration</projectUrl>
-    <iconUrl>https://github.com/joymon/Orchestration/tree/master/src/JoymonOnline.Orchestration/icon.ico</iconUrl>
+    <iconUrl>http://joymon.github.io/Orchestration/images/icon_100.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.Net library to orchestrate operations and commands. Helps to follow Single Responsibility Pattern</description>
     <releaseNotes>Initial beta release. API may change.</releaseNotes>
