@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Orchestration</id>
-    <version>0.0.0.1</version>
+    <version>$version$</version>
     <title>Orchestration</title>
     <authors>Joy George K</authors>
     <owners>Joy George K</owners>
