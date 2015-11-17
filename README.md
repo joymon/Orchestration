@@ -9,6 +9,7 @@
 - You have some data/context and needs to perform series of operations on it.
 - Where operations are independent.
 - If you are ok on dealing with a state. Here in this case the context.
+- If you are struck with .Net 4.0. On 4.5 there is [Banzai](https://github.com/eswann/Banzai) [nuget library](https://www.nuget.org/packages/Banzai/) which can do things in async way.
 
 ## How to use
 
