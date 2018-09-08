@@ -1,4 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/6qx7d8dpnx8o5d4n?svg=true)](https://ci.appveyor.com/project/joymon/orchestration)
+[![Test](https://img.shields.io/appveyor/tests/joymon/orchestration.svg)](https://ci.appveyor.com/project/joymon/orchestration)
 [![Build status](https://img.shields.io/nuget/v/Orchestration.svg)](https://img.shields.io/nuget/v/Orchestration.svg)
 [![Build status](https://img.shields.io/nuget/dt/Orchestration.svg)](https://img.shields.io/nuget/dt/Orchestration.svg)
 
