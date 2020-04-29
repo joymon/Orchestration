@@ -1,38 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC374C80-9FC0-4422-A01D-DF4484481199}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JoymonOnline.Orchestration</RootNamespace>
-    <AssemblyName>JoymonOnline.Orchestration</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <TargetFrameworks>
+      net46;net461;net472;netcoreapp3.0;netcoreapp3.1;net48
+    </TargetFrameworks>
+   <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Orchestration</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Joy George Kunjikkuru</Authors>
+    <Company>JoymonOnline</Company>
+    <Product>Orchestration</Product>
+    <description>.Net library to orchestrate operations and commands. Helps to follow Single Responsibility Pattern</description>
+    <AssemblyName>DotNet.Helpers</AssemblyName>
+    <PackageTags>.Net Orchestration SRP Sequencing Library C# VB.Net Linq </PackageTags>
+    <PackageProjectUrl>https://github.com/joymon/orchestration</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/joymon/dotnet-helpers</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'net472' or '$(TargetFramework)' == 'net48'">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'net472' or '$(TargetFramework)' == 'net48'">
+    <DefineConstants>NET45;NETFULL</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>DotNet.Helpers.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
+  
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
@@ -46,36 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\IOperationInterceptable{OperationContextType}.cs" />
-    <Compile Include="Core\IOrchestrationStrategy{OperationContextType}.cs" />
-    <Compile Include="Interceptors\ConsoleLoggingOperationInterceptor.cs" />
-    <Compile Include="Orchestrators\InterceptableOperationOrchestrator{OperationContextType}.cs" />
-    <Compile Include="Orchestrators\OperationOrchestrator{OperationContextType}.cs" />
-    <Compile Include="Orchestrators\PeriodicBackgroundOperationOrchestrator{OperationContextType}.cs" />
-    <Compile Include="Orchestrators\ReversibleOperationOrchestrator{OperationContextType}.cs" />
-    <Compile Include="Strategies\SequentialOrchestrationStrategy.cs" />
-    <Compile Include="Triggers\TimerBasedTrigger.cs" />
-    <Compile Include="Orchestrators\TPLBasedParallelOperationsOrchestrator{OperationContextType}.cs" />
-    <Compile Include="Core\IOperationsOrchestrator{OperationContextType}.cs" />
-    <Compile Include="Core\IOperationsProvider{OperationContextType}.cs" />
-    <Compile Include="Core\IOperation{OperationContextType}.cs" />
-    <Compile Include="Core\IReversible{OperationContextType}.cs" />
-    <Compile Include="Core\ITriggerPeriodicBackgroundOperation.cs" />
-    <Compile Include="Builder\OrchestrationBuilder{OperationContextType}.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategies\TPLBasedParallelOrchestrationStrategy{OperationContext}.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="JoymonOnline.Orchestration.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
