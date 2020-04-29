@@ -4,19 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
-using System.Threading;
 using JoymonOnline.Orchestration.Core;
 using JoymonOnline.Orchestration.Orchestrators;
 
-namespace TestProject2
+namespace JoymonOnline.Orchestration.Tests
 {
     /// <summary>
-    /// Summary description for TPLBasedParallelOperationsOrchestrator_OperationContextType__Start
+    /// Summary description for OrchestrationBuilder_OperationContextType__AddOperation
     /// </summary>
     [TestClass]
-    public class TPLBasedParallelOperationsOrchestrator_OperationContextType__Start
+    public class OrchestrationBuilder_OperationContextType__AddOperation
     {
-        public TPLBasedParallelOperationsOrchestrator_OperationContextType__Start()
+        public OrchestrationBuilder_OperationContextType__AddOperation()
         {
             //
             // TODO: Add constructor logic here
@@ -64,38 +63,27 @@ namespace TestProject2
         #endregion
 
         [TestMethod]
-        public void WhenOperationsContaingDelay_WaitForAllOperationsToComplete()
+        public void WhenTargetIsOperationOrchestration_ShouldWork()
         {
-            IOperationOrchestrator<int> orch = new TPLBasedParallelOperationsOrchestrator<int>(
-                new ParallelOperationsProvider());
-            orch.Start(30);
-            Thread.Sleep(5000);
+            IOperationOrchestrator<int> orch = OrchestrationBuilder<int>.Create()
+                   .AddOperation(new TestOperation())
+            .Build();
+
+            orch.Start(2);
+        }
+        [TestMethod]
+        public void WhenTriedWithFluentAPIUsingExtensions_ShouldWork()
+        {
+            OperationOrchestrator<int> orch =OrchestrationBuilderWithExtensions.Create<OperationOrchestrator<int>>();
+            PeriodicBackgroundOperationOrchestrator<int> pOrch = OrchestrationBuilderWithExtensions.Create<PeriodicBackgroundOperationOrchestrator<int>>();
+            pOrch.SetInterval<int>(34);
         }
     }
-    class ParallelOperationsProvider : IOperationsProvider<int>
-    {
-        IEnumerable<IOperation<int>> IOperationsProvider<int>.GetOperations()
-        {
-            yield return new ParallelOp1();
-            yield return new ParallelOp2();
-        }
-    }
-    class ParallelOp1 : IOperation<int>
-    {
-        void IOperation<int>.Execute(int context)
-        {
-            Debug.WriteLine("ParallelOp1 before waiting");
-            Thread.Sleep(2000);
-            Debug.WriteLine("ParallelOp1 after waiting");
-        }
-    }
-    class ParallelOp2 : IOperation<int>
+    class TestOperation : IOperation<int>
     {
         void IOperation<int>.Execute(int context)
         {
-            Debug.WriteLine("ParallelOp2 before waiting");
-            Thread.Sleep(2000);
-            Debug.WriteLine("ParallelOp2 after waiting");
+            Trace.WriteLine(context);
         }
     }
 }

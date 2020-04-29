@@ -7,15 +7,15 @@ using System.Diagnostics;
 using JoymonOnline.Orchestration.Core;
 using JoymonOnline.Orchestration.Orchestrators;
 
-namespace TestProject2
+namespace JoymonOnline.Orchestration.Tests
 {
     /// <summary>
-    /// Summary description for OrchestrationBuilder_OperationContextType__AddOperation
+    /// Summary description for ReversibleOperationsOrchestrator_Start
     /// </summary>
     [TestClass]
-    public class OrchestrationBuilder_OperationContextType__AddOperation
+    public class ReversibleOperationsOrchestrator_Start
     {
-        public OrchestrationBuilder_OperationContextType__AddOperation()
+        public ReversibleOperationsOrchestrator_Start()
         {
             //
             // TODO: Add constructor logic here
@@ -63,27 +63,43 @@ namespace TestProject2
         #endregion
 
         [TestMethod]
-        public void WhenTargetIsOperationOrchestration_ShouldWork()
+        public void WhenSecondOperationThrowsException_FirstOperationShouldBeReverted()
         {
-            IOperationOrchestrator<int> orch = OrchestrationBuilder<int>.Create()
-                   .AddOperation(new TestOperation())
-            .Build();
-
-            orch.Start(2);
-        }
-        [TestMethod]
-        public void WhenTriedWithFluentAPIUsingExtensions_ShouldWork()
-        {
-            OperationOrchestrator<int> orch =OrchestrationBuilderWithExtensions.Create<OperationOrchestrator<int>>();
-            PeriodicBackgroundOperationOrchestrator<int> pOrch = OrchestrationBuilderWithExtensions.Create<PeriodicBackgroundOperationOrchestrator<int>>();
-            pOrch.SetInterval<int>(34);
+            IOperationOrchestrator<int> orch = new ReversibleOperationOrchestrator<int>(new ReversibleOperationProvider());
+            
+            orch.Start(20);
         }
     }
-    class TestOperation : IOperation<int>
+    class ReversibleOperationProvider : IOperationsProvider<int>
+    {
+        IEnumerable<IOperation<int>> IOperationsProvider<int>.GetOperations()
+        {
+            yield return new ReversibleOperation1();
+            yield return new ReversibleOperation2();
+        }
+    }
+    class ReversibleOperation1 : IOperation<int>, IReversible<int>
     {
         void IOperation<int>.Execute(int context)
         {
-            Trace.WriteLine(context);
+            Debug.WriteLine("ReversibleOperation1");
+        }
+
+        void IReversible<int>.Reverse(int context)
+        {
+            Debug.WriteLine("Reverting ReversibleOperation1");
+        }
+    }
+    class ReversibleOperation2 : IOperation<int>, IReversible<int>
+    {
+        void IOperation<int>.Execute(int context)
+        {
+            throw new Exception("test");
+        }
+
+        void IReversible<int>.Reverse(int context)
+        {
+            Debug.WriteLine("Reverting ReversibleOperation2");
         }
     }
 }

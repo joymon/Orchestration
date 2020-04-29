@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
+using System.Threading;
 using JoymonOnline.Orchestration.Core;
 using JoymonOnline.Orchestration.Orchestrators;
 
-namespace TestProject2
+namespace JoymonOnline.Orchestration.Tests
 {
     /// <summary>
-    /// Summary description for ReversibleOperationsOrchestrator_Start
+    /// Summary description for TPLBasedParallelOperationsOrchestrator_OperationContextType__Start
     /// </summary>
     [TestClass]
-    public class ReversibleOperationsOrchestrator_Start
+    public class TPLBasedParallelOperationsOrchestrator_OperationContextType__Start
     {
-        public ReversibleOperationsOrchestrator_Start()
+        public TPLBasedParallelOperationsOrchestrator_OperationContextType__Start()
         {
             //
             // TODO: Add constructor logic here
@@ -63,42 +64,38 @@ namespace TestProject2
         #endregion
 
         [TestMethod]
-        public void WhenSecondOperationThrowsException_FirstOperationShouldBeReverted()
+        public void WhenOperationsContaingDelay_WaitForAllOperationsToComplete()
         {
-            IOperationOrchestrator<int> orch = new ReversibleOperationOrchestrator<int>(new ReversibleOperationProvider());
-            orch.Start(20);
+            IOperationOrchestrator<int> orch = new TPLBasedParallelOperationsOrchestrator<int>(
+                new ParallelOperationsProvider());
+            orch.Start(30);
+            Thread.Sleep(5000);
         }
     }
-    class ReversibleOperationProvider : IOperationsProvider<int>
+    class ParallelOperationsProvider : IOperationsProvider<int>
     {
         IEnumerable<IOperation<int>> IOperationsProvider<int>.GetOperations()
         {
-            yield return new ReversibleOperation1();
-            yield return new ReversibleOperation2();
+            yield return new ParallelOp1();
+            yield return new ParallelOp2();
         }
     }
-    class ReversibleOperation1 : IOperation<int>, IReversible<int>
+    class ParallelOp1 : IOperation<int>
     {
         void IOperation<int>.Execute(int context)
         {
-            Debug.WriteLine("ReversibleOperation1");
-        }
-
-        void IReversible<int>.Reverse(int context)
-        {
-            Debug.WriteLine("Reverting ReversibleOperation1");
+            Debug.WriteLine("ParallelOp1 before waiting");
+            Thread.Sleep(2000);
+            Debug.WriteLine("ParallelOp1 after waiting");
         }
     }
-    class ReversibleOperation2 : IOperation<int>, IReversible<int>
+    class ParallelOp2 : IOperation<int>
     {
         void IOperation<int>.Execute(int context)
         {
-            throw new Exception("test");
-        }
-
-        void IReversible<int>.Reverse(int context)
-        {
-            Debug.WriteLine("Reverting ReversibleOperation2");
+            Debug.WriteLine("ParallelOp2 before waiting");
+            Thread.Sleep(2000);
+            Debug.WriteLine("ParallelOp2 after waiting");
         }
     }
 }

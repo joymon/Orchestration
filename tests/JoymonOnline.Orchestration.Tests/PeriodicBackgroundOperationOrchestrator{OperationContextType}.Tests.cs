@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
-namespace TestProject2
+namespace JoymonOnline.Orchestration.Tests
 {
     [TestClass]
     public class PeriodicBackgroundOperationOrchestrator_OperationContextType_Tests
