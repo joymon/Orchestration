@@ -9,37 +9,37 @@ namespace JoymonOnline.Orchestration.Orchestrators
 {
     public class PeriodicBackgroundOperationOrchestrator<OperationContextType> : OperationOrchestrator<OperationContextType>
     {
-        ITriggerPeriodicBackgroundOperation _trigger;
+        readonly ITriggerPeriodicBackgroundOperation triggerOperation;
         OperationContextType _context;
         public PeriodicBackgroundOperationOrchestrator() { }
         public PeriodicBackgroundOperationOrchestrator(IOperationsProvider<OperationContextType> provider,
             ITriggerPeriodicBackgroundOperation trigger) : base(provider)
         {
-            _trigger = trigger;
+            this.triggerOperation = trigger;
         }
         
         public PeriodicBackgroundOperationOrchestrator(IEnumerable<IOperation<OperationContextType>> operations, 
             ITriggerPeriodicBackgroundOperation trigger) :base(operations)
         {
-            this._trigger = trigger;
+            this.triggerOperation = trigger;
         }
         
         
 
         protected override void InternalStart(OperationContextType context)
         {
-            _trigger.Trigger += _trigger_Trigger;
+            triggerOperation.Trigger += TriggerOperation_Trigger;
             //_timer= new Timer(OnTick, null, 0, 2000);
             _context = context;
         }
 
-        private void _trigger_Trigger(object sender, EventArgs e)
+        private void TriggerOperation_Trigger(object sender, EventArgs e)
         {
             base.InternalStart(_context);
         }
         protected override void InternalStop()
         {
-            _trigger.Trigger -= _trigger_Trigger;
+            triggerOperation.Trigger -= TriggerOperation_Trigger;
             base.InternalStop();
 
         }
