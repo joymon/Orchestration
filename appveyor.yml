@@ -1,0 +1,20 @@
+version: 0.0.0.{build}
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+build:
+  publish_nuget: true
+  verbosity: minimal
+artifacts:
+- path: '*.nupkg'
+  name: nupkg
+deploy:
+- provider: NuGet
+  api_key:
+    secure: e/71KNviNk29vIj8RtYgjcsZK2h8chrbPUSft7Wfad3KjRA6yizf3oT7vzCxy046
+  skip_symbols: true
+  on:
+    APPVEYOR_REPO_TAG: true

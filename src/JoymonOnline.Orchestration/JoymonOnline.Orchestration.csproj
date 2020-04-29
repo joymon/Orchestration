@@ -42,6 +42,8 @@
   
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PackageIcon>icon.ico</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,6 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="icon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="JoymonOnline.Orchestration.nuspec" />
   </ItemGroup>
   <ItemGroup>
