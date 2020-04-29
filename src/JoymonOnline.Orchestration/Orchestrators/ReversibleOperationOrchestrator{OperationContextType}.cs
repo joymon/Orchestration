@@ -22,7 +22,7 @@ namespace JoymonOnline.Orchestration.Orchestrators
                 {
                     ops[counter].Execute(context);
                 }
-                catch(Exception ex)
+                catch
                 {
                     break;
                 }

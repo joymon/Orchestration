@@ -5,6 +5,11 @@
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'net472'">
     <Reference Include="mscorlib" />
     <Reference Include="System" />

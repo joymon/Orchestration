@@ -9,7 +9,6 @@ namespace JoymonOnline.Orchestration.Orchestrators
 {
     public class PeriodicBackgroundOperationOrchestrator<OperationContextType> : OperationOrchestrator<OperationContextType>
     {
-        Timer _timer;
         ITriggerPeriodicBackgroundOperation _trigger;
         OperationContextType _context;
         public PeriodicBackgroundOperationOrchestrator() { }
@@ -22,7 +21,7 @@ namespace JoymonOnline.Orchestration.Orchestrators
         public PeriodicBackgroundOperationOrchestrator(IEnumerable<IOperation<OperationContextType>> operations, 
             ITriggerPeriodicBackgroundOperation trigger) :base(operations)
         {
-            _trigger = trigger;
+            this._trigger = trigger;
         }
         
         
