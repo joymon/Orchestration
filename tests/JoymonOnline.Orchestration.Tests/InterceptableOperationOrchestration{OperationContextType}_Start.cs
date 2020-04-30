@@ -12,26 +12,28 @@ namespace JoymonOnline.Orchestration.Tests
         [TestMethod]
         public void WhenOneInterceptorIsGiven_ItShouldWork()
         {
+            TestInterceptor interceptor = new TestInterceptor();
             IOperationOrchestrator<int> orch = new InterceptableOperationOrchestrator<int>(
-                new OperationsProvider(),GetInterceptors());
-            orch.Start(20);
-        }
+                new OperationsProvider(), new List<IOperationInterceptable<int>>() { interceptor });
 
-        private IEnumerable<IOperationInterceptable<int>> GetInterceptors()
-        {
-            yield return new TestInterceptor();
+            orch.Start(20);
+
+            Assert.IsTrue(interceptor.DoesInterceptedInAfterMethod, "Didnt intercepted the After method");
+            Assert.IsTrue(interceptor.DoesInterceptedInAfterMethod, "Didnt intercepted the Before method");
         }
     }
     class TestInterceptor : IOperationInterceptable<int>
     {
+        public bool DoesInterceptedInBeforeMethod { get; set; }
+        public bool DoesInterceptedInAfterMethod { get; set; }
         void IOperationInterceptable<int>.After(int context)
         {
-            
+            this.DoesInterceptedInAfterMethod = true;
         }
 
         void IOperationInterceptable<int>.Before(int context)
         {
-            
+            this.DoesInterceptedInBeforeMethod = true;
         }
     }
 }
