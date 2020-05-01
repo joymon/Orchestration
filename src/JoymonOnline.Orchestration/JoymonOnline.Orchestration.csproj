@@ -42,7 +42,7 @@
   
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <PackageIcon>icon.ico</PackageIcon>
+    <PackageIcon>icon_100.png</PackageIcon>
     <PackageIconUrl />
   </PropertyGroup>
   
@@ -51,7 +51,7 @@
     <WarningsAsErrors />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="icon.ico">
+    <None Include="icon_100.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
