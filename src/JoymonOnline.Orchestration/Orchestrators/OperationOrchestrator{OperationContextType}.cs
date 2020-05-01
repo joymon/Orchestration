@@ -11,8 +11,8 @@ namespace JoymonOnline.Orchestration.Orchestrators
     public class OperationOrchestrator<OperationContextType> : IOperationOrchestrator<OperationContextType>
     {
         IEnumerable<IOperation<OperationContextType>> _operations;
-        IOperationsProvider<OperationContextType> _provider;
-        IOrchestrationStrategy<OperationContextType> _strategy = new SequentialOrchestrationStrategy<OperationContextType>();
+        readonly IOperationsProvider<OperationContextType> _provider;
+        readonly IOrchestrationStrategy<OperationContextType> _strategy = new SequentialOrchestrationStrategy<OperationContextType>();
 
         protected virtual IEnumerable<IOperation<OperationContextType>> Operations
         {

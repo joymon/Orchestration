@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace JoymonOnline.Orchestration.Orchestrators
 {
-    public class TPLBasedParallelOperationsOrchestrator<OperationContextType> :OperationOrchestrator<OperationContextType>
+    public class TPLBasedParallelOperationsOrchestrator<OperationContextType> : OperationOrchestrator<OperationContextType>
     {
-        public TPLBasedParallelOperationsOrchestrator(IOperationsProvider<OperationContextType> provider) :base(provider)
+        public TPLBasedParallelOperationsOrchestrator(IOperationsProvider<OperationContextType> provider) : base(provider)
         {
 
         }

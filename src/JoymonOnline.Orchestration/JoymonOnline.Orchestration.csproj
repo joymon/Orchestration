@@ -2,11 +2,11 @@
   
   <PropertyGroup>
     <TargetFrameworks>
-      net46;net461;net472;netcoreapp3.0;netcoreapp3.1;net48
+      net45;net46;net461;net472;netcoreapp2.1;netcoreapp3.1;net48
     </TargetFrameworks>
    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Orchestration</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.0.0</Version>
     <Authors>Joy George Kunjikkuru</Authors>
     <Company>JoymonOnline</Company>
     <Product>Orchestration</Product>

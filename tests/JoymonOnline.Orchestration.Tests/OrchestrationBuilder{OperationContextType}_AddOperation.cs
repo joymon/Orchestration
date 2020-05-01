@@ -74,7 +74,6 @@ namespace JoymonOnline.Orchestration.Tests
         [TestMethod]
         public void WhenTriedWithFluentAPIUsingExtensions_ShouldWork()
         {
-            OperationOrchestrator<int> orch =OrchestrationBuilderWithExtensions.Create<OperationOrchestrator<int>>();
             PeriodicBackgroundOperationOrchestrator<int> pOrch = OrchestrationBuilderWithExtensions.Create<PeriodicBackgroundOperationOrchestrator<int>>();
             pOrch.SetInterval<int>(34);
         }

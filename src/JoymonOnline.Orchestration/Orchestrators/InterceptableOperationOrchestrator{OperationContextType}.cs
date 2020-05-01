@@ -10,7 +10,7 @@ namespace JoymonOnline.Orchestration.Orchestrators
 {
     public class InterceptableOperationOrchestrator<OperationContextType> :OperationOrchestrator<OperationContextType>
     {
-        IEnumerable<IOperationInterceptable<OperationContextType>> _interceptors;
+        readonly IEnumerable<IOperationInterceptable<OperationContextType>> _interceptors;
         public InterceptableOperationOrchestrator(IOperationsProvider<OperationContextType> provider,
             IEnumerable<IOperationInterceptable<OperationContextType>> interceptors) :base(provider)
         {
