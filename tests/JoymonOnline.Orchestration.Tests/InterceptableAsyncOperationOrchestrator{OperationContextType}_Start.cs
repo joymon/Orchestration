@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace JoymonOnline.Orchestration.Tests
 {
     [TestClass]
-    public class InterceptableAsyncOperationOrchestrator_OperationContextType_Start
+    public partial class InterceptableAsyncOperationOrchestrator_OperationContextType_Start
     {
         [TestMethod]
         public async Task WhenThereIsOneOperationAndInterceptorIsUsed_BeforeExecuteOfInterceptorShouldBeCalled()
@@ -27,7 +27,6 @@ namespace JoymonOnline.Orchestration.Tests
 
         }
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public async Task WhenThereIsOneOperationAndInterceptorIsUsed_AfterExecuteOfInterceptorShouldBeCalled()
         {
             //Arrange

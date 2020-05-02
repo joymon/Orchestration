@@ -18,15 +18,6 @@ namespace JoymonOnline.Orchestration.Tests
                 new AsyncOperationOrchestrator<int>(null);
             int square = await orchestrator.Start(9);
         }
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public async Task WhenObjectCreatedWithInterceptorsNull_ThrowArgumentNullException()
-        {
-            var asyncOp = new AsyncFindSquareRoot();
-            IAsyncOperationOrchestrator<int> orchestrator =
-                new AsyncOperationOrchestrator<int>(new List<IAsyncOperation<int>>() { asyncOp });
-            _ = await orchestrator.Start(9);
-            Console.WriteLine($"TimeCanExecute:{asyncOp.TimeWhenCanExecuteStarted},TimeExecute:{asyncOp.TimeWhenExecuteStarted}");
-        }
+
     }
 }
