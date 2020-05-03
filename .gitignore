@@ -100,7 +100,7 @@ _TeamCity*
 *.dotCover
 
 #OpenCover
-**/*.opencover.*
+tests/**/*.opencover.*
 
 # NCrunch
 _NCrunch_*
@@ -197,3 +197,4 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
