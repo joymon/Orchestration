@@ -3,6 +3,7 @@ using JoymonOnline.Orchestration.Core;
 using JoymonOnline.Orchestration.Orchestrators;
 using JoymonOnline.Orchestration.Triggers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -10,22 +11,22 @@ using System.Threading;
 namespace JoymonOnline.Orchestration.Tests
 {
     [TestClass]
-    public class PeriodicBackgroundOperationOrchestrator_OperationContextType_Tests
+    public class PeriodicBackgroundOperationOrchestrator_OperationContextType_Start
     {
         [TestMethod]
-        public void WhenInNormalCondition_ShouldWork()
+        public void WhenIntervalIs500msAndWaitFor2100ms_ShouldWork()
         {
             //Arrange
             FindNextNumber findNextNumberOp = new FindNextNumber();
             IOperationOrchestrator<int> orchestrator =
                 new PeriodicBackgroundOperationOrchestrator<int>(new List<IOperation<int>>() { findNextNumberOp },
-                new TimerBasedTrigger(2000));
+                new TimerBasedTrigger(500));
             //Act
             orchestrator.Start(10);
-            Thread.Sleep(9000);
+            Thread.Sleep(2100);
+            Console.WriteLine($"Execution count:{findNextNumberOp.ExecutionCount}");
             //Assert
-            findNextNumberOp.ExecutionCount.Should().Be(4);
-
+            findNextNumberOp.ExecutionCount.Should().BeLessOrEqualTo(4);
         }
         [TestMethod]
         public void WhenIntervalIs1AndStoppedAfter3SecondsAndWaitsFor3MoreSeconds_ExecutionCountShouldNotExceed3()
@@ -44,15 +45,7 @@ namespace JoymonOnline.Orchestration.Tests
             findNextNumberOp.ExecutionCount.Should().BeLessOrEqualTo(3);
 
         }
-        [TestMethod]
-        public void WhenBackgroundOperationsListProviderIsUsed_ShouldSucceed()
-        {
-            IOperationOrchestrator<int> orchestrator =
-                new PeriodicBackgroundOperationOrchestrator<int>( new PeriodicBackgroundOperationsProvider(),
-                new TimerBasedTrigger(2000));
-            orchestrator.Start(10);
-            Thread.Sleep(10000);
-        }
+
 
     }
 
@@ -62,7 +55,7 @@ namespace JoymonOnline.Orchestration.Tests
         void IOperation<int>.Execute(int context)
         {
             ExecutionCount += 1;
-            Trace.WriteLine(string.Format("Next number of {0} is {1}", context, context +1));
+            Trace.WriteLine(string.Format("Next number of {0} is {1}", context, context + 1));
         }
     }
     public class PeriodicBackgroundOperationsProvider : IOperationsProvider<int>
