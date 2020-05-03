@@ -14,6 +14,16 @@ before_build:
 build:
   publish_nuget: true
   verbosity: minimal
+after_test:
+- ps: >-
+        $ErrorActionPreference = "Stop"
+
+        dotnet test "tests\JoymonOnline.Orchestration.Tests\JoymonOnline.Orchestration.Tests.csproj" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Threshold=100 /p:ThresholdType=line --configuration Debug --no-build
+
+        if($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode )  }
+
+- ps: choco install codecov --no-progress
+- ps: codecov.exe -f "tests\JoymonOnline.Orchestration.Tests\\coverage.net472.opencover.xml" -t $env:CODECOV_TOKEN
 artifacts:
 - path: '*.nupkg'
   name: nupkg
