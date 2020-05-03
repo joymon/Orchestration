@@ -3,6 +3,7 @@
 | Build | [![Build status](https://ci.appveyor.com/api/projects/status/6qx7d8dpnx8o5d4n?svg=true)](https://ci.appveyor.com/project/joymon/orchestration) |
 | Code | ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/joymon/Orchestration) ![GitHub repo size](https://img.shields.io/github/repo-size/joymon/Orchestration) [![](https://tokei.rs/b1/github/joymon/Orchestration)](https://github.com/joymon/Orchestration) |
 | Test | [![Test](https://img.shields.io/appveyor/tests/joymon/orchestration.svg)](https://ci.appveyor.com/project/joymon/orchestration) |
+| Issues | [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/joymon/Orchestration.svg)](http://isitmaintained.com/project/joymon/Orchestration "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/joymon/Orchestration.svg)](http://isitmaintained.com/project/joymon/Orchestration "Percentage of issues still open") |
 | Deployment | [![Build status](https://img.shields.io/nuget/v/Orchestration.svg)](https://img.shields.io/nuget/v/Orchestration.svg)[![Build status](https://img.shields.io/nuget/dt/Orchestration.svg)](https://img.shields.io/nuget/dt/Orchestration.svg) |
 
 
