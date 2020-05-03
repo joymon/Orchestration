@@ -48,47 +48,5 @@ namespace JoymonOnline.Orchestration.Tests
             orchestrator.Start(10);
         }
     }
-    internal class FindSumOperation : IOperation<CalculationContext>
-    {
-        void IOperation<CalculationContext>.Execute(CalculationContext context)
-        {
-            context.Sum = context.Numbers.Sum();
-        }
-    }
-    internal class FindAverageOperation : IOperation<CalculationContext>
-    {
-        void IOperation<CalculationContext>.Execute(CalculationContext context)
-        {
-            context.Average = context.Sum / context.Numbers.Length;
-        }
-    }
-    internal class CalculationContext
-    {
-        public int[] Numbers { get; set; }
-        public int Sum { get; set; }
-        public int Average { get; set; }
-    }
-
-    internal class FindSquareRoot : IOperation<int>
-    {
-        void IOperation<int>.Execute(int context)
-        {
-            Console.WriteLine("SquareRoot of {0} is {1}", context, Math.Sqrt(context));
-        }
-    }
-
-    public class FindSquare : IOperation<int>
-    {
-        void IOperation<int>.Execute(int context)
-        {
-            Console.WriteLine("Square of {0} is {1}", context, context * context);
-        }
-    }
-    public class OperationsProvider : IOperationsProvider<int>
-    {
-        IEnumerable<IOperation<int>> IOperationsProvider<int>.GetOperations()
-        {
-            return new List<IOperation<int>>() { new FindSquare() };
-        }
-    }
+   
 }

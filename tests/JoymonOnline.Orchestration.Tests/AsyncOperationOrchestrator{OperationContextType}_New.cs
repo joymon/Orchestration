@@ -16,7 +16,7 @@ namespace JoymonOnline.Orchestration.Tests
         {
             IAsyncOperationOrchestrator<int> orchestrator =
                 new AsyncOperationOrchestrator<int>(null);
-            int square = await orchestrator.Start(9);
+            _ = await orchestrator.Start(9);
         }
 
     }

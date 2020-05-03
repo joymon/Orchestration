@@ -22,18 +22,4 @@ namespace JoymonOnline.Orchestration.Tests
             Assert.IsTrue(interceptor.DoesInterceptedInAfterMethod, "Didnt intercepted the Before method");
         }
     }
-    class TestInterceptor : IOperationInterceptable<int>
-    {
-        public bool DoesInterceptedInBeforeMethod { get; set; }
-        public bool DoesInterceptedInAfterMethod { get; set; }
-        void IOperationInterceptable<int>.After(int context)
-        {
-            this.DoesInterceptedInAfterMethod = true;
-        }
-
-        void IOperationInterceptable<int>.Before(int context)
-        {
-            this.DoesInterceptedInBeforeMethod = true;
-        }
-    }
 }

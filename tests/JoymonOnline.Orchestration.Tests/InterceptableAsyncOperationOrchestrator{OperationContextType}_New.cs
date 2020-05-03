@@ -1,4 +1,5 @@
-﻿using JoymonOnline.Orchestration.Core;
+﻿using FluentAssertions;
+using JoymonOnline.Orchestration.Core;
 using JoymonOnline.Orchestration.Orchestrators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -17,6 +18,7 @@ namespace JoymonOnline.Orchestration.Tests
             IAsyncOperationOrchestrator<int> orchestrator =
                 new InterceptableAsyncOperationOrchestrator<int>(null,null);
             int square = await orchestrator.Start(9);
+            square.Should().Be(81);
         }
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]

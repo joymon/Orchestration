@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JoymonOnline.Orchestration.Strategies
 {
-    class TPLBasedParallelOrchestrationStrategy<OperationContextType> : IOrchestrationStrategy<OperationContextType>
+    internal class TPLBasedParallelOrchestrationStrategy<OperationContextType> : IOrchestrationStrategy<OperationContextType>
     {
         void IOrchestrationStrategy<OperationContextType>.Start(IEnumerable<IOperation<OperationContextType>> operations, OperationContextType context)
         {

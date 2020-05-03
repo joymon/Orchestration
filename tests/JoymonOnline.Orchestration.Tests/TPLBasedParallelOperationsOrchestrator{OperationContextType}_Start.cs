@@ -66,20 +66,16 @@ namespace JoymonOnline.Orchestration.Tests
         [TestMethod]
         public void WhenOperationsContaingDelay_WaitForAllOperationsToComplete()
         {
-            IOperationOrchestrator<int> orch = new TPLBasedParallelOperationsOrchestrator<int>(
-                new ParallelOperationsProvider());
-            orch.Start(30);
+            IOperationOrchestrator<ExeContext> orch = new TPLBasedParallelOperationsOrchestrator<ExeContext>(
+                new GenericOperationsProvider<ExeContext>(new List<IOperation<ExeContext>>()
+                {
+
+                }));
+            orch.Start(new ExeContext() { Radius = 2 });
             Thread.Sleep(5000);
         }
     }
-    class ParallelOperationsProvider : IOperationsProvider<int>
-    {
-        IEnumerable<IOperation<int>> IOperationsProvider<int>.GetOperations()
-        {
-            yield return new ParallelOp1();
-            yield return new ParallelOp2();
-        }
-    }
+
     class ParallelOp1 : IOperation<int>
     {
         void IOperation<int>.Execute(int context)

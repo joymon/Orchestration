@@ -1,4 +1,5 @@
 ﻿using JoymonOnline.Orchestration.Core;
+using JoymonOnline.Orchestration.Strategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,20 +9,10 @@ namespace JoymonOnline.Orchestration.Orchestrators
 {
     public class TPLBasedParallelOperationsOrchestrator<OperationContextType> : OperationOrchestrator<OperationContextType>
     {
-        public TPLBasedParallelOperationsOrchestrator(IOperationsProvider<OperationContextType> provider) : base(provider)
+        public TPLBasedParallelOperationsOrchestrator(IOperationsProvider<OperationContextType> provider) : 
+            base(provider,new TPLBasedParallelOrchestrationStrategy<OperationContextType>())
         {
-
-        }
-        protected override void InternalStart(OperationContextType context)
-        {
-            IList<Task> tasks = new List<Task>();
-            foreach (IOperation<OperationContextType> op in base.Operations)
-            {
-                Task task = new Task(() => op.Execute(context));
-                task.Start();
-                tasks.Add(task);
-            }
-            Task.WaitAll(tasks.ToArray());
+            
         }
     }
 }
