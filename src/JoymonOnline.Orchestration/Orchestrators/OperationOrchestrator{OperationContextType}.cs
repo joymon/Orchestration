@@ -62,7 +62,7 @@ namespace JoymonOnline.Orchestration.Orchestrators
         #region IOperationOrchestrator
         void IOperationOrchestrator.Start()
         {
-
+            _strategy.Start(this.Operations, default(OperationContextType));
         }
         void IOperationOrchestrator<OperationContextType>.Start(OperationContextType context)
         {

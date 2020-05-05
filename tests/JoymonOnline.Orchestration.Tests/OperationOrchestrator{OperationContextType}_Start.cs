@@ -1,6 +1,7 @@
 ﻿using JoymonOnline.Orchestration.Core;
 using JoymonOnline.Orchestration.Orchestrators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,17 @@ namespace JoymonOnline.Orchestration.Tests
     [TestClass]
     public class OperationOrchestrator_OperationContextType_Start
     {
+
+        [TestMethod]
+        public void WhenNonGenericStartIsUsed_ShouldWorkWithDefaultValue()
+        {
+            var Mock = new Mock<IOperation<int>>();
+
+            IOperationOrchestrator<int> orchestrator =
+                new OperationOrchestrator<int>(new List<IOperation<int>>() { Mock.Object });
+            orchestrator.Start();
+            Mock.Verify(op => op.Execute(0), Times.Once);
+        }
         [TestMethod]
         public void WhenInNormalCondition_ShouldWork()
         {
