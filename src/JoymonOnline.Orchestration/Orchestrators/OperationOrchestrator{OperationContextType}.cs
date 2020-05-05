@@ -31,10 +31,10 @@ namespace JoymonOnline.Orchestration.Orchestrators
         {
             _operations = new List<IOperation<OperationContextType>>();
         }
-        public OperationOrchestrator(IOperationsProvider<OperationContextType> provider) 
-            :this(provider,new SequentialOrchestrationStrategy<OperationContextType>())
+        public OperationOrchestrator(IOperationsProvider<OperationContextType> provider)
+            : this(provider, new SequentialOrchestrationStrategy<OperationContextType>())
         {
-            
+
         }
         public OperationOrchestrator(IOperationsProvider<OperationContextType> provider,
             IOrchestrationStrategy<OperationContextType> strategy)
@@ -53,7 +53,10 @@ namespace JoymonOnline.Orchestration.Orchestrators
         {
             _strategy.Start(Operations, context);
         }
-        protected virtual void InternalStop() { }
+        protected virtual void InternalStop()
+        {
+            _strategy.Stop();
+        }
         #endregion
 
         #region IOperationOrchestrator

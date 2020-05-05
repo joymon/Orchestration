@@ -41,7 +41,7 @@ namespace JoymonOnline.Orchestration.Tests
             Console.WriteLine("Sum={0},Average={1}", context.Sum, context.Average);
         }
         [TestMethod]
-        public void WhenBackgroundOperationsListProviderIsUsed_ShouldSucceed()
+        public void WhenOperationsListProviderIsUsed_ShouldSucceed()
         {
             IOperationOrchestrator<int> orchestrator =
                 new OperationOrchestrator<int>(new OperationsProvider());

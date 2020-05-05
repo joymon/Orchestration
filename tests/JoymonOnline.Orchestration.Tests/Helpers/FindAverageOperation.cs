@@ -1,4 +1,5 @@
 ﻿using JoymonOnline.Orchestration.Core;
+using System;
 
 namespace JoymonOnline.Orchestration.Tests
 {
@@ -6,6 +7,7 @@ namespace JoymonOnline.Orchestration.Tests
     {
         void IOperation<CalculationContext>.Execute(CalculationContext context)
         {
+            Console.WriteLine($"{nameof(FindAverageOperation)}.Execute - Start {DateTime.UtcNow}");
             context.Average = context.Sum / context.Numbers.Length;
         }
     }

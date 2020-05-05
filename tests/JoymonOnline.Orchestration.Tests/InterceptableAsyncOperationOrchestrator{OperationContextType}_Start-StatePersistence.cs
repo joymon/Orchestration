@@ -21,7 +21,9 @@ namespace JoymonOnline.Orchestration.Tests
             var asyncPeriOp = new AsyncCirclePerimeterFinderOperation();
             var asyncInterceptor = new AsyncStateManagementOperationInterceptor();
             IAsyncOperationOrchestrator<ExeContext> orchestrator = new InterceptableAsyncOperationOrchestrator<ExeContext>(
-               new List<IAsyncOperation<ExeContext>>() { asyncAreaOp, asyncPeriOp },
+               new List<IAsyncOperation<ExeContext>>() { 
+                   asyncAreaOp, 
+                   asyncPeriOp },
                 new List<IAsyncOperationInterceptable<ExeContext>>() { asyncInterceptor });
             //Act
             ExeContext inputContext = new ExeContext() { Radius = 4 };
