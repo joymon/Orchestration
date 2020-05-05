@@ -16,13 +16,7 @@ namespace JoymonOnline.Orchestration.Tests
     [TestClass]
     public class TPLBasedParallelOperationsOrchestrator_OperationContextType__Start
     {
-        public TPLBasedParallelOperationsOrchestrator_OperationContextType__Start()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
+        
         private TestContext testContextInstance;
 
         /// <summary>
@@ -63,15 +57,21 @@ namespace JoymonOnline.Orchestration.Tests
         //
         #endregion
 
+        public TPLBasedParallelOperationsOrchestrator_OperationContextType__Start()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
         [TestMethod]
         public void WhenOperationsContaingDelay_WaitForAllOperationsToComplete()
         {
-            IOperationOrchestrator<ExeContext> orch = new TPLBasedParallelOperationsOrchestrator<ExeContext>(
-                new GenericOperationsProvider<ExeContext>(new List<IOperation<ExeContext>>()
+            IOperationOrchestrator<CalculationContext> orch = new TPLBasedParallelOperationsOrchestrator<CalculationContext>(
+                new GenericOperationsProvider<CalculationContext>(new List<IOperation<CalculationContext>>()
                 {
-
-                }));
-            orch.Start(new ExeContext() { Radius = 2 });
+                    new FindAverageOperation()
+                })); 
+            orch.Start(new CalculationContext() { Numbers = new int[] { 2, 3, 5} });
             Thread.Sleep(5000);
         }
     }

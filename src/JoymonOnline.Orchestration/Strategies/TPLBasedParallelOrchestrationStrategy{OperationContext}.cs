@@ -14,8 +14,7 @@ namespace JoymonOnline.Orchestration.Strategies
             IList<Task> tasks = new List<Task>();
             foreach (IOperation<OperationContextType> op in operations)
             {
-                Task task = new Task(() => op.Execute(context));
-                task.Start();
+                Task task = Task.Run(() => op.Execute(context));
                 tasks.Add(task);
             }
             Task.WaitAll(tasks.ToArray());
