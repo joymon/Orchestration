@@ -11,10 +11,10 @@
     <Company>JoymonOnline</Company>
     <Product>Orchestration</Product>
     <description>.Net library to orchestrate operations and commands. Helps to follow Single Responsibility Pattern</description>
-    <AssemblyName>DotNet.Helpers</AssemblyName>
+    <AssemblyName>Orchestration</AssemblyName>
     <PackageTags>.Net Orchestration SRP Sequencing Library C# VB.Net Linq </PackageTags>
     <PackageProjectUrl>https://github.com/joymon/orchestration</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/joymon/dotnet-helpers</RepositoryUrl>
+    <RepositoryUrl>https://github.com/joymon/orchestration</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'net472' or '$(TargetFramework)' == 'net48'">
