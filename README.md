@@ -6,7 +6,7 @@
 | Security | [![Known Vulnerabilities](https://snyk.io/test/github/joymon/Orchestration/badge.svg?targetFile=src/JoymonOnline.Orchestration/JoymonOnline.Orchestration.csproj)](https://snyk.io/test/github/joymon/Orchestration?targetFile=src/JoymonOnline.Orchestration/JoymonOnline.Orchestration.csproj) |
 | Test | [![Test](https://img.shields.io/appveyor/tests/joymon/orchestration.svg)](https://ci.appveyor.com/project/joymon/orchestration)[![codecov](https://codecov.io/gh/joymon/Orchestration/branch/master/graph/badge.svg)](https://codecov.io/gh/joymon/Orchestration) |
 | Issues | [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/joymon/Orchestration.svg)](http://isitmaintained.com/project/joymon/Orchestration "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/joymon/Orchestration.svg)](http://isitmaintained.com/project/joymon/Orchestration "Percentage of issues still open") |
-| Deployment | [![Build status](https://img.shields.io/nuget/v/Orchestration.svg)](https://img.shields.io/nuget/v/Orchestration.svg)[![Build status](https://img.shields.io/nuget/dt/Orchestration.svg)](https://img.shields.io/nuget/dt/Orchestration.svg) |
+| Deployment | [![Build status](https://img.shields.io/nuget/v/Orchestration.svg)](https://www.nuget.org/packages/Orchestration)[![Build status](https://img.shields.io/nuget/dt/Orchestration.svg)](https://img.shields.io/nuget/dt/Orchestration.svg) |
 
 
 # Orchestration
